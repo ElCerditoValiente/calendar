@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { environment } from 'src/environments/environment';
-
+import { CalendarEventModule } from 'src/app/calendar-event/calendar-event.module';
 
 @NgModule({
   declarations: [],
@@ -11,7 +11,7 @@ import { environment } from 'src/environments/environment';
 })
 export class CalendarModule
 {
-
+  events = [];
   dateCurrent:Date = new Date();
   days = [0,1,2,3,4,5,6];
 
