@@ -1,0 +1,30 @@
+<h1>Calendario</h1>
+<div class="row">
+
+  <div class="col-12">
+        <span (click)="back()"><</span>
+        <span>{{ calendarObject.getCurrentStartDay() }} </span> de <span> {{ calendarObject.getCurrentStartMonth() }} </span>
+        -
+        <span>{{ calendarObject.getCurrentEndDay() }} </span> de <span> {{ calendarObject.getCurrentEndMonth() }} </span>
+        <span (click)="next()">></span>
+   </div>
+</div>
+
+<div class="row">
+
+  <div class="col-12">
+
+    <div class="row" *ngFor="let i of days">
+
+      <div class="col-12">
+
+        <div> {{ calendarObject.getDayBy(i) }} </div>
+        <div> {{ calendarObject.getWeekDayBy(i) }} </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

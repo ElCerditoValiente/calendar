@@ -3,7 +3,13 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  monthNames : ["Enero", "Febrero", "Marzo",
+  "Abril", "Mayo", "Junio", "Julio",
+  "Agosto", "Septiembre", "Octubre",
+  "Noviembre", "Diciembre"
+  ],
+  daysName : ["domingo", "lunes", "martes", "miecoles", "jueves", "viernes", "sabado"]
 };
 
 /*
