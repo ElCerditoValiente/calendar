@@ -17,10 +17,13 @@
     <div class="row" *ngFor="let i of days">
 
       <div class="col-12">
-
-        <div> {{ calendarObject.getDayBy(i) }} </div>
-        <div> {{ calendarObject.getWeekDayBy(i) }} </div>
-
+        <div class="d-inline-block">
+          <div> {{ calendarObject.getDayBy(i) }} </div>
+          <div> {{ calendarObject.getWeekDayBy(i) }} </div>
+        </div>
+        <div class="d-inline-block" *ngFor="let event of calendarObject.getEventsByIndexDay(i)">
+          {{ event.title }}
+        </div>
       </div>
 
     </div>

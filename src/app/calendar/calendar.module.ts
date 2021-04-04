@@ -11,8 +11,8 @@ import { CalendarEventModule } from 'src/app/calendar-event/calendar-event.modul
 })
 export class CalendarModule
 {
-  events = [];
-  dateCurrent:Date = new Date();
+  public events = [];
+  public dateCurrent:Date = new Date();
   days = [0,1,2,3,4,5,6];
 
   //set Date one week back
@@ -60,6 +60,48 @@ export class CalendarModule
     let auxDate = new Date(this.dateCurrent.getTime()+((index)*24*60*60*1000));
 
     return environment.daysName[auxDate.getDay()];
+  }
+
+  //generate a event on calendar
+
+  addEvent(title,subTitle,description,order,hash)
+  {
+    let event = new CalendarEventModule();
+    event.setTitle(title);
+    event.setSubTitle(subTitle);
+    event.setDescription(description);
+    event.setOrder(order);
+    event.setHash(hash);
+    this.events.push(event);
+  }
+  //get events by index of the day
+  getEventsByIndexDay(index)
+  {
+    let retEvents = [];
+    let checkHash = this.getCurrentDayHashByIndex(index);
+    for(let event of this.getEvents())
+    {
+      if(event.getHash() == checkHash)
+      {
+        retEvents.push(event);
+      }
+    }
+
+    retEvents.sort(function(a, b) {
+      return a.getOrder() - b.getOrder();
+    });
+    return retEvents;
+  }
+  //get current hash day
+  getCurrentDayHashByIndex(index)
+  {
+    let auxDate = new Date(this.dateCurrent.getTime()+(index*24*60*60*1000));
+    return auxDate.getDate()+"-"+(auxDate.getMonth()+1)+"-"+auxDate.getFullYear();
+  }
+
+  getEvents()
+  {
+    return this.events;
   }
 
 }

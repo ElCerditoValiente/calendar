@@ -16,6 +16,8 @@ export class WelcomeComponent implements OnInit {
   ngOnInit()
   {
 
+    this.fillCalendar();
+
   }
 
   //set Date one week back
@@ -28,6 +30,15 @@ export class WelcomeComponent implements OnInit {
   next()
   {
     this.calendarObject.increaseWeek();
+  }
+
+  fillCalendar()
+  {
+
+    this.calendarObject.addEvent("calen 1","subText","Lorem Lorem Macu Macu",1,"7-4-2021");
+    this.calendarObject.addEvent("calen 3","subText","Lorem Lorem Macu Macu",1,"8-4-2021");
+    this.calendarObject.addEvent("calen 2","subText","Lorem Lorem Macu Macu",2,"8-4-2021");
+
   }
 
 
