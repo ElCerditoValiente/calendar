@@ -21,8 +21,8 @@
           <div> {{ calendarObject.getDayBy(i) }} </div>
           <div> {{ calendarObject.getWeekDayBy(i) }} </div>
         </div>
-        <div class="d-inline-block" *ngFor="let event of calendarObject.getEventsByIndexDay(i)">
-          {{ event.title }}
+        <div (click)="open(event.getDescription())" class="d-inline-block" *ngFor="let event of calendarObject.getEventsByIndexDay(i)">
+          {{ event.getTitle() }}
         </div>
       </div>
 
@@ -31,3 +31,15 @@
   </div>
 
 </div>
+
+
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+
+  </div>
+</ng-template>

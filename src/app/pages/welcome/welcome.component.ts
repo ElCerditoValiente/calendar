@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { CalendarModule } from 'src/app/calendar/calendar.module';
+import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 @Component({
   selector: 'app-welcome',
   templateUrl: './welcome.component.html',
@@ -11,7 +12,11 @@ export class WelcomeComponent implements OnInit {
   dateCurrent:Date = new Date();
   days = [0,1,2,3,4,5,6];
   calendarObject: CalendarModule = new CalendarModule();
-  constructor() { }
+  constructor(private modalService: NgbModal)
+  {
+
+
+  }
 
   ngOnInit()
   {
@@ -41,6 +46,10 @@ export class WelcomeComponent implements OnInit {
 
   }
 
-
+  open(content) {
+    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
+    }, (reason) => {
+    });
+  }
 
 }
