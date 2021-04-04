@@ -1,12 +1,12 @@
 <h1>Calendario</h1>
 <div class="row">
 
-  <div class="col-12">
-        <span (click)="back()"><</span>
+  <div class="col-12 fs-12 bold">
+        <span class="pointer" (click)="back()"><</span>
         <span>{{ calendarObject.getCurrentStartDay() }} </span> de <span> {{ calendarObject.getCurrentStartMonth() }} </span>
         -
         <span>{{ calendarObject.getCurrentEndDay() }} </span> de <span> {{ calendarObject.getCurrentEndMonth() }} </span>
-        <span (click)="next()">></span>
+        <span class="pointer" (click)="next()">></span>
    </div>
 </div>
 
@@ -17,12 +17,21 @@
     <div class="row" *ngFor="let i of days">
 
       <div class="col-12">
-        <div class="d-inline-block">
-          <div> {{ calendarObject.getDayBy(i) }} </div>
-          <div> {{ calendarObject.getWeekDayBy(i) }} </div>
-        </div>
-        <div (click)="open(event.getDescription())" class="d-inline-block" *ngFor="let event of calendarObject.getEventsByIndexDay(i)">
-          {{ event.getTitle() }}
+        <div class="row">
+          <div class="col-3">
+            <div class="d-inline-block box grayColor dayBox mat-5 mab-5">
+              <div class="d-inline-block mt-10"> {{ calendarObject.getWeekDayBy(i) }} </div>
+              <div class="d-inline-block mt-10"> {{ calendarObject.getDayBy(i) }} </div>
+            </div>
+          </div>
+          <div class="col-9">
+            <div class="box eventBox mat-5 mab-5">
+              <div [ngStyle]="{'background-color': event.getColor()}" (click)="showModal(event.getDescription(),event.getColor())" class="d-inline-block event fs-12 bold pointer" *ngFor="let event of calendarObject.getEventsByIndexDay(i)">
+                {{ event.getTitle() }} <br>
+                {{ event.getSubTitle() }}
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -32,14 +41,13 @@
 
 </div>
 
+<!-- The Modal -->
+<div *ngIf="isVisible" id="myModal" class="modal" >
 
-<ng-template #content let-modal>
-  <div class="modal-header">
-    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-      <span aria-hidden="true">&times;</span>
-    </button>
+  <!-- Modal content -->
+  <div class="modal-content" [ngStyle]="{'background-color': modalColor}">
+    <div (click)="closeModal()" class="close">&times;</div>
+    <div [innerHTML]="modalContent"></div>
   </div>
-  <div class="modal-body">
 
-  </div>
-</ng-template>
+</div>

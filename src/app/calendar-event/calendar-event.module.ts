@@ -16,6 +16,7 @@ export class CalendarEventModule
   private description:string = "";
   private hash:string = "";
   private order:number = 0;
+  private color:string="";
 
   public getTitle()
   {
@@ -68,6 +69,17 @@ export class CalendarEventModule
   public setOrder(order)
   {
     this.order = order;
+    return this;
+  }
+
+  public getColor()
+  {
+    return this.color;
+  }
+
+  public setColor(color)
+  {
+    this.color = color;
     return this;
   }
 

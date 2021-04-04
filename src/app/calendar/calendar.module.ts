@@ -64,7 +64,7 @@ export class CalendarModule
 
   //generate a event on calendar
 
-  addEvent(title,subTitle,description,order,hash)
+  addEvent(title,subTitle,description,order,hash,color)
   {
     let event = new CalendarEventModule();
     event.setTitle(title);
@@ -72,6 +72,7 @@ export class CalendarModule
     event.setDescription(description);
     event.setOrder(order);
     event.setHash(hash);
+    event.setColor(color);
     this.events.push(event);
   }
   //get events by index of the day
